@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Streisand",
+    "urlScheme": "streisand://import/",
+    "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/83/a0/cd/83a0cd76-ef34-d890-7b44-a1a9a17041c5/AppIcon-0-0-1x_U007epad-0-0-0-0-85-220.png/512x512bb.jpg",
+    "link": "streisand://import/{url}",
+    "os": ["iOS", "Android"],
+    "downloadLinks": {
+      "iOS": "https://example.com/streisand-ios",
+      "Android": "https://example.com/streisand-android",
+      "Windows": "https://example.com/streisand-windows",
+      "Linux": "https://example.com/streisand-linux"
+    },
+    "ShowInMenu": true
+  },
+  {
+    "name": "V2box",
+    "urlScheme": "v2box://install-sub",
+    "image": "https://play-lh.googleusercontent.com/kVeisXWkT4oRMDsZbFrY7XXJvnxHJ7PnQFE71XCcCWAoeOAg5G3HJRDp4Ro3Xbc3WA",
+    "link": "v2box://install-sub?url={url}&name=MattSub",
+    "os": ["Android"],
+    "downloadLinks": {
+      "Android": "https://example.com/v2box-android",
+      "Windows": "https://example.com/v2box-windows",
+      "Linux": "https://example.com/v2box-linux"
+    },
+    "ShowInMenu": true
+  },
+  {
+    "name": "V2rayNG",
+    "urlScheme": "v2rayng://install-config",
+    "image": "https://play-lh.googleusercontent.com/x3RFim6Fb-bgRd-HnV9VNrdqBRueyOuUjvu7ZNv7eRYC5Idl3WU_GSxa7bpx5yyUT30",
+    "link": "v2rayng://install-config?url={url}",
+    "os": ["Android"],
+    "downloadLinks": {
+      "Android": "https://example.com/v2rayng-android",
+      "Windows": "https://example.com/v2rayng-windows",
+      "Linux": "https://example.com/v2rayng-linux"
+    },
+    "ShowInMenu": true
+  },
+  {
+    "name": "SingBox",
+    "urlScheme": "sing-box://import-remote-profile",
+    "image": "https://play-lh.googleusercontent.com/9hC1t0lYNRlFHt2N2NJCWYMe_M6vJh580XHdC0JeEW14AJJFZGDbgj_meooXAXHbWJ1_",
+    "link": "sing-box://import-remote-profile?url={url}#MattSub",
+    "os": ["iOS", "Android", "Windows", "Linux"],
+    "downloadLinks": {
+      "iOS": "https://example.com/singbox-ios",
+      "Android": "https://example.com/singbox-android",
+      "Windows": "https://example.com/singbox-windows",
+      "Linux": "https://example.com/singbox-linux"
+    },
+    "ShowInMenu": true
+  }
+]
