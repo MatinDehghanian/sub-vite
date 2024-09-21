@@ -10,48 +10,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Card, Col, Container, Row, Stack } from "react-bootstrap";
+import { Container, Row, Stack } from "react-bootstrap";
 import {
   formatDate,
   formatExpireDate,
   calculateRemainingTime,
   formatTraffic,
 } from "../utils/Helper";
-
-const InfoRow = ({ icon, label, value, extraIcon, extraColor, extend }) => (
-  <Col xs="12" md={!extend ? "6" : ""} className={"item " + extend}>
-    <Stack direction="horizontal" gap={3}>
-      <div className="icon-holder">
-        <FontAwesomeIcon size="lg" icon={icon} />
-      </div>
-      <div className="text-c">
-        <div className="p-2 ms-auto">{label}</div>
-        <div className="p-2 text-op">
-          {value}
-          {extraIcon && (
-            <FontAwesomeIcon
-              className="px-2 flashdot"
-              size="sm"
-              icon={extraIcon}
-              color={extraColor}
-            />
-          )}
-        </div>
-      </div>
-    </Stack>
-  </Col>
-);
-
-const InfoCard = ({ title, value }) => (
-  <Col xs="12" md="3">
-    <Card>
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{value}</Card.Text>
-      </Card.Body>
-    </Card>
-  </Col>
-);
+import InfoRow from "./ClientTab/ServiceComponents/InfoRow";
+import InfoCard from "./ClientTab/ServiceComponents/InfoCard";
 
 const ServiceInfo = ({ data }) => {
   const [serviceInfo, setServiceInfo] = useState({
