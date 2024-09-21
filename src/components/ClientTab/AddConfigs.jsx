@@ -8,13 +8,13 @@ const AddConfigs = () => {
   const pathname = window.location.pathname.split("#")[0];
   const url = `${panelDomain}${pathname}`;
 
-  const menuItems = AppsData?.filter((app) => app.ShowInMenu);
-
   const openShadowrocketURL = () => {
     const encodedURL = btoa(url);
     const shadowrocketLink = "sub://" + encodedURL;
-    window.location.href = shadowrocketLink;
+    window.location.href = shadowrocketLink; // Redirect to the Shadowrocket link
   };
+
+  const menuItems = AppsData?.filter((app) => app.ShowInMenu);
 
   return (
     <>
@@ -23,6 +23,7 @@ const AddConfigs = () => {
           <Col xs="6" md="3" key={index}>
             <Card>
               <Card.Body
+                as={app.name === "Shadowrocket" ? "div" : Link}
                 onClick={
                   app.name === "Shadowrocket" ? openShadowrocketURL : undefined
                 }
@@ -31,6 +32,7 @@ const AddConfigs = () => {
                     ? app.link?.replace("{url}", url)
                     : undefined
                 }
+                style={{ cursor: "pointer" }}
               >
                 <Card.Title>{app.name}</Card.Title>
                 <Card.Text>
