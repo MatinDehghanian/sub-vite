@@ -1,27 +1,6 @@
 import { faClipboard, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
-// Extract name from config URL
-export const extractNameFromConfigURL = (url) => {
-  const namePattern = /#([^#]*)/;
-  const match = url.match(namePattern);
-
-  if (match) {
-    return decodeURIComponent(match[1]);
-  } else if (url.startsWith("vmess://")) {
-    const encodedString = url.replace("vmess://", "");
-    const decodedString = atob(encodedString);
-    try {
-      return JSON.parse(decodedString).ps;
-    } catch (error) {
-      console.error("Invalid vmess URL format:", error);
-      return null;
-    }
-  } else {
-    return null;
-  }
-};
-
 // Handle clipboard copy and update icon
 export const handleCopyToClipboard = (
   text,
@@ -57,6 +36,26 @@ export const handleCopyToClipboard = (
   }
 };
 
+// Extract name from config URL
+export const extractNameFromConfigURL = (url) => {
+  const namePattern = /#([^#]*)/;
+  const match = url.match(namePattern);
+
+  if (match) {
+    return decodeURIComponent(match[1]);
+  } else if (url.startsWith("vmess://")) {
+    const encodedString = url.replace("vmess://", "");
+    const decodedString = atob(encodedString);
+    try {
+      return JSON.parse(decodedString).ps;
+    } catch (error) {
+      console.error("Invalid vmess URL format:", error);
+      return null;
+    }
+  }
+  return null;
+};
+
 // Update icon after successful copy
 export const handleIconChange = (index, setIcons, setIconClasses) => {
   setIcons((prevIcons) => {
@@ -86,20 +85,14 @@ export const handleIconChange = (index, setIcons, setIconClasses) => {
   }, 1000);
 };
 
-// serviceInfoHelpers.js
-
 export const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const day = date.getDate();
-  const monthName = date.toLocaleString("en-US", { month: "long" });
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  return `${day} ${monthName} ${hours}:${minutes}`;
-};
+  const tehranOffset = 3.5 * 60;
+  const utcTime = date.getTime();
+  const tehranTime = new Date(utcTime + tehranOffset * 60 * 1000);
 
-export const formatExpireDate = (timestamp) => {
-  const date = new Date(timestamp * 1000);
-  return date.toLocaleString("en-US", {
+  return tehranTime.toLocaleString("en-US", {
+    timeZone: "Asia/Tehran",
     month: "long",
     day: "numeric",
     hour: "2-digit",
@@ -107,12 +100,17 @@ export const formatExpireDate = (timestamp) => {
   });
 };
 
+// Format expiration date
+export const formatExpireDate = (timestamp) => {
+  return formatDate(new Date(timestamp * 1000).toISOString());
+};
+
+// Calculate remaining time
 export const calculateRemainingTime = (expireTimestamp) => {
-  const currentTime = Math.floor(Date.now() / 1000);
-  const remainingSeconds = expireTimestamp - currentTime;
+  const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
 
   if (remainingSeconds <= 0) {
-    return "Expired";
+    return "تمام شده";
   }
 
   const days = Math.floor(remainingSeconds / (60 * 60 * 24));
@@ -124,11 +122,11 @@ export const calculateRemainingTime = (expireTimestamp) => {
   return `${minutes} دقیقه`;
 };
 
+// Format traffic data
 export const formatTraffic = (bytes) => {
-  const kb = 1024;
-  const mb = kb * 1024;
-  const gb = mb * 1024;
-  const tb = gb * 1024;
+  const mb = 1024 ** 2;
+  const gb = 1024 ** 3;
+  const tb = 1024 ** 4;
 
   if (bytes < mb) return false;
   if (bytes < gb) return `${(bytes / mb).toFixed(2)} MB`;

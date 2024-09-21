@@ -5,6 +5,7 @@ import Header from "../layouts/Header";
 import Client from "../components/Client";
 import { useEffect, useState } from "react";
 import GetInfoRequest from "../utils/GetInfoRequest";
+import { ClipLoader } from "react-spinners"; // Import the spinner
 
 const Home = () => {
   const [data, setData] = useState(null); // Start with null
@@ -31,7 +32,16 @@ const Home = () => {
           />
         </Helmet>
         {loading ? (
-          <div>Loading...</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <ClipLoader size={50} color="#3498db" loading={loading} />
+          </div>
         ) : (
           data && (
             <>

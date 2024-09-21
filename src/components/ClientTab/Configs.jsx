@@ -13,10 +13,13 @@ import {
 } from "../../utils/Helper.js";
 
 const Configs = ({ data }) => {
-  const filteredLinks = useMemo(
-    () => data?.links?.slice(0, -1) || [],
-    [data?.links]
-  );
+  
+  const filteredLinks = useMemo(() => {
+    if (data?.links && data.links[data.links.length - 1] === "False") {
+      return data.links.slice(0, -1);
+    }
+    return data?.links || [];
+  }, [data?.links]);
 
   const [icons, setIcons] = useState([]);
   const [iconClasses, setIconClasses] = useState([]);

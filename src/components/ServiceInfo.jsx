@@ -32,10 +32,19 @@ const ServiceInfo = ({ data }) => {
   });
 
   const statusColor =
-    data?.status === "on_hold" ? "yellow" : data?.status ? "green" : "red";
+    data?.status === "on_hold"
+      ? "yellow"
+      : data?.status === "expired"
+      ? "orange"
+      : data?.status
+      ? "green"
+      : "red";
+
   const statusDetail =
     data?.status === "on_hold"
       ? "متوقف شده"
+      : data?.status === "expired"
+      ? "منقضی شده"
       : data?.status
       ? "فعال"
       : "غیرفعال";
@@ -51,8 +60,8 @@ const ServiceInfo = ({ data }) => {
       } = data;
 
       setServiceInfo({
-        formattedDate: onlineAt ? formatDate(onlineAt) : "",
-        createdDate: createdAt ? formatDate(createdAt) : "",
+        formattedDate: onlineAt ? formatDate(onlineAt) : "نامشخص",
+        createdDate: createdAt ? formatDate(createdAt) : "نامشخص",
         formattedExpireDate: expire ? formatExpireDate(expire) : "نامحدود",
         remainingTime: expire ? (
           calculateRemainingTime(expire)
@@ -97,7 +106,7 @@ const ServiceInfo = ({ data }) => {
         />
         <InfoRow
           icon={faCircleInfo}
-          label={"وضعیت اتصال :"}
+          label={"آخرین اتصال :"}
           value={formattedDate}
         />
         <InfoRow
