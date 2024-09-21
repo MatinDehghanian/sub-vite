@@ -8,21 +8,27 @@ import { toast } from "react-toastify";
  */
 
 export default class Request {
+  static axiosInstance = Axios.create({
+    // Base URL can be set here if needed
+    // baseURL: 'https://api.example.com',
+  });
+
   /**
    *
    * @param {string} url
-   * @param {Method} type
+   * @param {'GET' | 'POST' | 'PUT' | 'DELETE'} method
    * @param {import('axios').AxiosRequestConfig} config
    * @param {Utils} utils
    *
    * @returns {Promise<AxiosResponse<any>>}
    */
-  static async send(url, method, config = {}, utils = undefined) {
-    const request = Axios.request({
-      url: url,
-      method: method,
+  static async send(url, method = "GET", config = {}, utils = undefined) {
+    const request = this.axiosInstance.request({
+      url,
+      method,
+      ...config, // Spread the config to include any additional Axios request settings
     });
-    return Request.handleRequest(request, utils);
+    return this.handleRequest(request, utils);
   }
 
   /**
@@ -48,6 +54,7 @@ export default class Request {
       ) {
         toast.error(e.response?.data?.message || e.response?.data?.detail);
       }
+      console.error("Request error:", e); // Log the error for debugging
       throw e;
     }
   }
