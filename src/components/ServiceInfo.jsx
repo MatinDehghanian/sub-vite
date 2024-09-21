@@ -60,7 +60,7 @@ const ServiceInfo = ({ data }) => {
           <FontAwesomeIcon size="lg" icon={faInfinity} />
         ),
         formattedTraffic:
-          usedTraffic !== undefined ? formatTraffic(usedTraffic) : "0 MB",
+          usedTraffic !== 0 ? formatTraffic(usedTraffic) : "0 MB",
         totalTraffic: dataLimit !== null ? formatTraffic(dataLimit) : "نامحدود",
         remainingTraffic:
           dataLimit !== null && dataLimit !== undefined ? (
@@ -132,8 +132,8 @@ const ServiceInfo = ({ data }) => {
           title={"تعداد کاربر"}
           value={<FontAwesomeIcon size="lg" icon={faInfinity} />}
         />
-        <InfoCard title={"حجم مصرف شده"} value={formattedTraffic} />
-        <InfoCard title={"حجم باقی مانده"} value={remainingTraffic} />
+        <InfoCard title={"حجم مصرف شده"} value={formattedTraffic} ltr />
+        <InfoCard title={"حجم باقی مانده"} value={remainingTraffic} ltr />
       </Row>
     </Container>
   );

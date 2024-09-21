@@ -4,25 +4,9 @@
     "urlScheme": "streisand://import/",
     "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/83/a0/cd/83a0cd76-ef34-d890-7b44-a1a9a17041c5/AppIcon-0-0-1x_U007epad-0-0-0-0-85-220.png/512x512bb.jpg",
     "link": "streisand://import/{url}",
-    "os": ["iOS", "Android"],
+    "os": ["iOS"],
     "downloadLinks": {
-      "iOS": "https://example.com/streisand-ios",
-      "Android": "https://example.com/streisand-android",
-      "Windows": "https://example.com/streisand-windows",
-      "Linux": "https://example.com/streisand-linux"
-    },
-    "ShowInMenu": true
-  },
-  {
-    "name": "V2box",
-    "urlScheme": "v2box://install-sub",
-    "image": "https://play-lh.googleusercontent.com/kVeisXWkT4oRMDsZbFrY7XXJvnxHJ7PnQFE71XCcCWAoeOAg5G3HJRDp4Ro3Xbc3WA",
-    "link": "v2box://install-sub?url={url}&name=MattSub",
-    "os": ["Android"],
-    "downloadLinks": {
-      "Android": "https://example.com/v2box-android",
-      "Windows": "https://example.com/v2box-windows",
-      "Linux": "https://example.com/v2box-linux"
+      "iOS": "https://apps.apple.com/us/app/streisand/id6450534064"
     },
     "ShowInMenu": true
   },
@@ -33,9 +17,38 @@
     "link": "v2rayng://install-config?url={url}",
     "os": ["Android"],
     "downloadLinks": {
-      "Android": "https://example.com/v2rayng-android",
-      "Windows": "https://example.com/v2rayng-windows",
-      "Linux": "https://example.com/v2rayng-linux"
+      "Android": "https://github.com/2dust/v2rayNG/releases/download/1.8.39/v2rayNG_1.8.39_universal.apk"
+    },
+    "ShowInMenu": true
+  },
+  {
+    "name": "V2box",
+    "urlScheme": "v2box://install-sub",
+    "image": "https://play-lh.googleusercontent.com/kVeisXWkT4oRMDsZbFrY7XXJvnxHJ7PnQFE71XCcCWAoeOAg5G3HJRDp4Ro3Xbc3WA",
+    "link": "v2box://install-sub?url={url}&name=SUBnew",
+    "os": ["iOS", "Android"],
+    "downloadLinks": {
+      "iOS": "https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690",
+      "Android": "https://play.google.com/store/apps/details?id=dev.hexasoftware.v2box&hl=en_GB"
+    },
+    "ShowInMenu": true
+  },
+  {
+    "name": "V2rayN",
+    "urlScheme": "v2rayng://install-config",
+    "image": "https://fa.v2rayn.org/wp-content/uploads/2024/01/favicon.png",
+    "os": ["Windows"],
+    "downloadLinks": {
+      "Windows": "https://github.com/2dust/v2rayN/releases/download/6.55/v2rayN-With-Core.zip"
+    },
+    "ShowInMenu": false
+  },
+  {
+    "name": "Shadowrocket",
+    "image": "https://avatars.githubusercontent.com/u/22568082?s=200&v=4",
+    "os": ["iOS"],
+    "downloadLinks": {
+      "iOS": "https://apps.apple.com/us/app/shadowrocket/id932747118"
     },
     "ShowInMenu": true
   },
@@ -46,11 +59,11 @@
     "link": "sing-box://import-remote-profile?url={url}#MattSub",
     "os": ["iOS", "Android", "Windows", "Linux"],
     "downloadLinks": {
-      "iOS": "https://example.com/singbox-ios",
-      "Android": "https://example.com/singbox-android",
-      "Windows": "https://example.com/singbox-windows",
-      "Linux": "https://example.com/singbox-linux"
+      "iOS": "https://apps.apple.com/om/app/sing-box/id6451272673",
+      "Android": "https://github.com/SagerNet/sing-box/releases/download/v1.9.6/SFA-1.9.6-universal.apk",
+      "Windows": "https://github.com/SagerNet/sing-box/releases/download/v1.9.6/sing-box-1.9.6-windows-386.zip",
+      "Linux": "https://github.com/SagerNet/sing-box/releases/download/v1.9.6/sing-box_1.9.6_linux_386.deb"
     },
-    "ShowInMenu": true
+    "ShowInMenu": false
   }
 ]

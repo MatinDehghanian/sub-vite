@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import AppsData from "../ClientTab/AppsComponents/apps.json";
 
 const AddConfigs = () => {
-  
   const panelDomain =
     import.meta.env?.VITE_PANEL_DOMAIN || window.location.origin;
   const pathname = window.location.pathname.split("#")[0];
   const url = `${panelDomain}${pathname}`;
-  
 
   const menuItems = AppsData?.filter((app) => app.ShowInMenu);
+
+  const openShadowrocketURL = () => {
+    const encodedURL = btoa(url);
+    const shadowrocketLink = "sub://" + encodedURL;
+    window.location.href = shadowrocketLink;
+  };
 
   return (
     <>
@@ -18,7 +22,16 @@ const AddConfigs = () => {
         {menuItems?.map((app, index) => (
           <Col xs="6" md="3" key={index}>
             <Card>
-              <Card.Body as={Link} to={app.link.replace("{url}", url)}>
+              <Card.Body
+                onClick={
+                  app.name === "Shadowrocket" ? openShadowrocketURL : undefined
+                }
+                to={
+                  app.name !== "Shadowrocket"
+                    ? app.link?.replace("{url}", url)
+                    : undefined
+                }
+              >
                 <Card.Title>{app.name}</Card.Title>
                 <Card.Text>
                   <Image
@@ -36,4 +49,5 @@ const AddConfigs = () => {
     </>
   );
 };
+
 export default AddConfigs;
