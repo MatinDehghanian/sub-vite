@@ -94,8 +94,7 @@ const ServiceInfo = ({ data }) => {
         ),
         formattedTraffic:
           usedTraffic !== undefined ? formatTraffic(usedTraffic) : "0 MB",
-        totalTraffic:
-          dataLimit !== undefined ? formatTraffic(dataLimit) : "نامحدود",
+        totalTraffic: dataLimit !== null ? formatTraffic(dataLimit) : "نامحدود",
         remainingTraffic:
           dataLimit !== null && dataLimit !== undefined ? (
             formatTraffic(dataLimit - (usedTraffic ?? 0))
