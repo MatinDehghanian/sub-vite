@@ -3,17 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Linux = ({ data }) => {
-  const linuxApps = data?.filter((app) => app.os.includes("Linux"));
+const AppList = ({ data, osType }) => {
+  const apps = data?.filter((app) => app.os.includes(osType));
 
   return (
     <ListGroup>
-      {linuxApps.map((app, index) => (
+      {apps.map((app, index) => (
         <ListGroup.Item key={index}>
           <div className="title-a">{app.name}</div>
           <div className="config-icons">
-            {app.downloadLinks.Linux && (
-              <Link to={app.downloadLinks.Linux}>
+            {app.downloadLinks[osType] && (
+              <Link to={app.downloadLinks[osType]}>
                 <FontAwesomeIcon size="sm" icon={faCloudArrowDown} />
               </Link>
             )}
@@ -23,4 +23,5 @@ const Linux = ({ data }) => {
     </ListGroup>
   );
 };
-export default Linux;
+
+export default AppList;

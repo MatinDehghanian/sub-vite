@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import AppsData from "../ClientTab/AppsComponents/apps.json";
 
 const AddConfigs = () => {
-  const url = `${
-    !import.meta.env?.VITE_PANEL_DOMAIN
-      ? window.location.origin
-      : import.meta.env?.VITE_PANEL_DOMAIN
-  }${window.location.pathname.split("#")[0]}`;
+  
+  const panelDomain =
+    import.meta.env?.VITE_PANEL_DOMAIN || window.location.origin;
+  const pathname = window.location.pathname.split("#")[0];
+  const url = `${panelDomain}${pathname}`;
+  
 
   const menuItems = AppsData?.filter((app) => app.ShowInMenu);
 

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   faAndroid,
   faApple,
@@ -6,77 +7,94 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tab, Col, Nav } from "react-bootstrap";
-import Iphone from "./AppsComponents/Iphone";
-import Android from "./AppsComponents/Android";
-import Windows from "./AppsComponents/Windows";
-import Linux from "./AppsComponents/Linux";
+import AppList from "./AppsComponents/Applist"; // Import the generic AppList
 import AppsData from "./AppsComponents/apps.json";
 
 const Apps = () => {
+  const [os, setOS] = useState("#Apple");
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    if (userAgent.includes("win")) {
+      setOS("#Windows");
+    } else if (
+      userAgent.includes("mac") &&
+      !userAgent.includes("iphone") &&
+      !userAgent.includes("ipad")
+    ) {
+      setOS("#Apple");
+    } else if (userAgent.includes("android")) {
+      setOS("#Android");
+    } else if (userAgent.includes("linux")) {
+      setOS("#Linux");
+    } else {
+      setOS("#Apple");
+    }
+  }, []);
+
+  const osData = [
+    {
+      key: "#Apple",
+      label: "اپل",
+      icon: faApple,
+      color: null,
+      osType: "iOS",
+    },
+    {
+      key: "#Android",
+      label: "اندروید",
+      icon: faAndroid,
+      color: "green",
+      osType: "Android",
+    },
+    {
+      key: "#Windows",
+      label: "ویندوز",
+      icon: faWindows,
+      color: "#2057bb",
+      osType: "Windows",
+    },
+    {
+      key: "#Linux",
+      label: "لینوکس",
+      icon: faLinux,
+      color: "orange",
+      osType: "Linux",
+    },
+  ];
+
   return (
     <>
-      <Tab.Container id="apps-tab" defaultActiveKey={"#iphone"}>
+      <Tab.Container id="apps-tab" defaultActiveKey={os}>
         <Col xs="12" className="m-auto d-flex mt-4 p-3 apps-col">
           <Col xs="12" md="3" lg="2" className="d-flex">
             <Nav
               variant="pills"
               className="flex-column nav-list w-100 nav-apps"
             >
-              <Nav.Item>
-                <Nav.Link eventKey="#iphone">
-                  <FontAwesomeIcon size="xl" className="mx-2" icon={faApple} />
-                  <span>{"آیفون"}</span>
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="#android">
-                  <FontAwesomeIcon
-                    size="xl"
-                    color="green"
-                    className="mx-2"
-                    icon={faAndroid}
-                  />
-                  <span>{"اندروید"}</span>
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="#windows">
-                  <FontAwesomeIcon
-                    size="xl"
-                    color="#2057bb"
-                    className="mx-2"
-                    icon={faWindows}
-                  />
-                  <span>{"ویندوز"}</span>
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="#linux">
-                  <FontAwesomeIcon
-                    size="xl"
-                    className="mx-2"
-                    icon={faLinux}
-                    color="orange"
-                  />
-                  <span>{"لینوکس"}</span>
-                </Nav.Link>
-              </Nav.Item>
+              {osData.map(({ key, label, icon, color }) => (
+                <Nav.Item key={key}>
+                  <Nav.Link eventKey={key}>
+                    <FontAwesomeIcon
+                      size="xl"
+                      className="mx-2"
+                      icon={icon}
+                      color={color}
+                    />
+                    <span>{label}</span>
+                  </Nav.Link>
+                </Nav.Item>
+              ))}
             </Nav>
           </Col>
           <Col xs="12" md="9" lg="10">
             <Tab.Content>
-              <Tab.Pane eventKey="#iphone">
-                <Iphone data={AppsData} />
-              </Tab.Pane>
-              <Tab.Pane eventKey="#android">
-                <Android data={AppsData} />
-              </Tab.Pane>
-              <Tab.Pane eventKey="#windows">
-                <Windows data={AppsData} />
-              </Tab.Pane>
-              <Tab.Pane eventKey="#linux">
-                <Linux data={AppsData} />
-              </Tab.Pane>
+              {osData.map(({ key, osType }) => (
+                <Tab.Pane eventKey={key} key={key}>
+                  <AppList data={AppsData} osType={osType} />
+                </Tab.Pane>
+              ))}
             </Tab.Content>
           </Col>
         </Col>
@@ -84,4 +102,5 @@ const Apps = () => {
     </>
   );
 };
+
 export default Apps;
