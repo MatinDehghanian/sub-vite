@@ -53,15 +53,24 @@
     "ShowInMenu": true
   },
   {
+    "name": "Nekoray",
+    "image": "https://avatars.githubusercontent.com/u/95122236?v=4",
+    "os": ["Windows", "Linux"],
+    "downloadLinks": {
+      "Windows": "https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-windows64.zip",
+      "Linux": "https://github.com/MatsuriDayo/nekoray/releases/download/3.26/nekoray-3.26-2023-12-09-linux64.zip"
+    },
+    "ShowInMenu": false
+  },
+  {
     "name": "SingBox",
     "urlScheme": "sing-box://import-remote-profile",
     "image": "https://play-lh.googleusercontent.com/9hC1t0lYNRlFHt2N2NJCWYMe_M6vJh580XHdC0JeEW14AJJFZGDbgj_meooXAXHbWJ1_",
     "link": "sing-box://import-remote-profile?url={url}#MattSub",
-    "os": ["iOS", "Android", "Windows", "Linux"],
+    "os": ["iOS", "Android", "Linux"],
     "downloadLinks": {
       "iOS": "https://apps.apple.com/om/app/sing-box/id6451272673",
       "Android": "https://github.com/SagerNet/sing-box/releases/download/v1.9.6/SFA-1.9.6-universal.apk",
-      "Windows": "https://github.com/SagerNet/sing-box/releases/download/v1.9.6/sing-box-1.9.6-windows-386.zip",
       "Linux": "https://github.com/SagerNet/sing-box/releases/download/v1.9.6/sing-box_1.9.6_linux_386.deb"
     },
     "ShowInMenu": false

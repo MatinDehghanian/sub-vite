@@ -31,23 +31,18 @@ const ServiceInfo = ({ data }) => {
     remainingTraffic: "",
   });
 
-  const statusColor =
-    data?.status === "on_hold"
-      ? "yellow"
-      : data?.status === "expired"
-      ? "orange"
-      : data?.status
-      ? "green"
-      : "red";
+  const statusMapping = {
+    on_hold: { color: "yellow", detail: "متوقف شده" },
+    expired: { color: "orange", detail: "منقضی شده" },
+    limited: { color: "brown", detail: "محدود شده" },
+    active: { color: "green", detail: "فعال" },
+    default: { color: "red", detail: "غیرفعال" },
+  };
 
-  const statusDetail =
-    data?.status === "on_hold"
-      ? "متوقف شده"
-      : data?.status === "expired"
-      ? "منقضی شده"
-      : data?.status
-      ? "فعال"
-      : "غیرفعال";
+  const currentStatus = statusMapping[data?.status] || statusMapping.default;
+
+  const statusColor = currentStatus.color;
+  const statusDetail = currentStatus.detail;
 
   useEffect(() => {
     if (data) {
@@ -73,7 +68,11 @@ const ServiceInfo = ({ data }) => {
         totalTraffic: dataLimit !== null ? formatTraffic(dataLimit) : "نامحدود",
         remainingTraffic:
           dataLimit !== null && dataLimit !== undefined ? (
-            formatTraffic(dataLimit - (usedTraffic ?? 0))
+            dataLimit - (usedTraffic ?? 0) < 0 ? (
+              "منفی"
+            ) : (
+              formatTraffic(dataLimit - (usedTraffic ?? 0))
+            )
           ) : (
             <FontAwesomeIcon size="lg" icon={faInfinity} />
           ),

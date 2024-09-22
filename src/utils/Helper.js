@@ -1,39 +1,35 @@
 import { faClipboard, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 
-// Handle clipboard copy and update icon
+// Utility function to copy text to clipboard and update icon state
 export const handleCopyToClipboard = (
   text,
   index,
   setIcons,
   setIconClasses
 ) => {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(
-      () => {
-        toast.success("لینک کپی شد");
-        handleIconChange(index, setIcons, setIconClasses);
-      },
-      (err) => {
-        toast.error("خطا در کپی کردن لینک");
-        console.error("Failed to copy: ", err);
-      }
-    );
-  } else {
+  const copyText = async () => {
     try {
-      const textArea = document.createElement("textarea");
-      textArea.value = text;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
+      await navigator.clipboard.writeText(text);
       toast.success("لینک کپی شد");
-      handleIconChange(index, setIcons, setIconClasses);
     } catch (err) {
-      toast.error("خطا در کپی کردن لینک");
-      console.error("Failed to copy: ", err);
+      fallbackCopy(text);
+    } finally {
+      handleIconChange(index, setIcons, setIconClasses);
     }
-  }
+  };
+
+  const fallbackCopy = (text) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    toast.success("لینک کپی شد");
+  };
+
+  copyText();
 };
 
 // Extract name from config URL
@@ -41,9 +37,9 @@ export const extractNameFromConfigURL = (url) => {
   const namePattern = /#([^#]*)/;
   const match = url.match(namePattern);
 
-  if (match) {
-    return decodeURIComponent(match[1]);
-  } else if (url.startsWith("vmess://")) {
+  if (match) return decodeURIComponent(match[1]);
+
+  if (url.startsWith("vmess://")) {
     const encodedString = url.replace("vmess://", "");
     const decodedString = atob(encodedString);
     try {
@@ -58,38 +54,31 @@ export const extractNameFromConfigURL = (url) => {
 
 // Update icon after successful copy
 export const handleIconChange = (index, setIcons, setIconClasses) => {
-  setIcons((prevIcons) => {
-    const newIcons = [...prevIcons];
-    newIcons[index] = faCheckCircle;
-    return newIcons;
-  });
-
-  setIconClasses((prevClasses) => {
-    const newClasses = [...prevClasses];
-    newClasses[index] = "icon-success";
-    return newClasses;
-  });
-
-  setTimeout(() => {
-    setIcons((prevIcons) => {
-      const newIcons = [...prevIcons];
-      newIcons[index] = faClipboard;
+  const updateIcon = (icon, className) => {
+    setIcons((prev) => {
+      const newIcons = [...prev];
+      newIcons[index] = icon;
       return newIcons;
     });
-
-    setIconClasses((prevClasses) => {
-      const newClasses = [...prevClasses];
-      newClasses[index] = "icon-copy";
+    setIconClasses((prev) => {
+      const newClasses = [...prev];
+      newClasses[index] = className;
       return newClasses;
     });
+  };
+
+  updateIcon(faCheckCircle, "icon-success");
+
+  setTimeout(() => {
+    updateIcon(faClipboard, "icon-copy");
   }, 1000);
 };
 
+// Format date for Tehran timezone
 export const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const tehranOffset = 3.5 * 60;
-  const utcTime = date.getTime();
-  const tehranTime = new Date(utcTime + tehranOffset * 60 * 1000);
+  const tehranOffset = 3.5 * 60 * 1000; // in milliseconds
+  const tehranTime = new Date(date.getTime() + tehranOffset);
 
   return tehranTime.toLocaleString("en-US", {
     timeZone: "Asia/Tehran",
@@ -101,17 +90,14 @@ export const formatDate = (dateString) => {
 };
 
 // Format expiration date
-export const formatExpireDate = (timestamp) => {
-  return formatDate(new Date(timestamp * 1000).toISOString());
-};
+export const formatExpireDate = (timestamp) =>
+  formatDate(new Date(timestamp * 1000).toISOString());
 
 // Calculate remaining time
 export const calculateRemainingTime = (expireTimestamp) => {
   const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
 
-  if (remainingSeconds <= 0) {
-    return "تمام شده";
-  }
+  if (remainingSeconds <= 0) return "تمام شده";
 
   const days = Math.floor(remainingSeconds / (60 * 60 * 24));
   const hours = Math.floor((remainingSeconds % (60 * 60 * 24)) / (60 * 60));
@@ -124,12 +110,13 @@ export const calculateRemainingTime = (expireTimestamp) => {
 
 // Format traffic data
 export const formatTraffic = (bytes) => {
-  const mb = 1024 ** 2;
-  const gb = 1024 ** 3;
-  const tb = 1024 ** 4;
+  const units = ["B", "MB", "GB", "TB"];
+  const thresholds = [1, 1024, 1024 ** 2, 1024 ** 3];
 
-  if (bytes < mb) return false;
-  if (bytes < gb) return `${(bytes / mb).toFixed(2)} MB`;
-  if (bytes < tb) return `${(bytes / gb).toFixed(2)} GB`;
-  return `${(bytes / tb).toFixed(2)} TB`;
+  for (let i = 0; i < thresholds.length; i++) {
+    if (bytes < thresholds[i] * 1024) {
+      return `${(bytes / thresholds[i]).toFixed(2)} ${units[i]}`;
+    }
+  }
+  return `${(bytes / 1024 ** 4).toFixed(2)} TB`; // Fallback for TB
 };

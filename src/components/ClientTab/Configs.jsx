@@ -90,7 +90,16 @@ const Configs = ({ data }) => {
             </ListGroup.Item>
           );
         })}
-        <Button onClick={() => handleCopyToClipboard(filteredLinks)}>
+        <Button
+          onClick={() =>
+            handleCopyToClipboard(
+              filteredLinks.join("\n"),
+              -1,
+              setIcons,
+              setIconClasses
+            )
+          }
+        >
           کپی همه
         </Button>
       </ListGroup>
