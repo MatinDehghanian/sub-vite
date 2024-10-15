@@ -23,18 +23,18 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/main/build/main.html
+sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/main/build/index.html
 ```
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
 ```sh
 echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"' | sudo tee -a /etc/opt/marzneshin/.env
-echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/main.html"' | sudo tee -a /etc/opt/marzneshin/.env
+echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /etc/opt/marzneshin/.env
 ```
 یا مقادیر زیر رو در فایل `.env` در پوشه `/opt/marzneshin` با پاک کردن # اول آنها از حالت کامنت در بیارید.
 ```sh
 CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"
-SUBSCRIPTION_PAGE_TEMPLATE="subscription/main.html"
+SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
 ```
 
 3. ری استارت مرزنشین
