@@ -1,6 +1,4 @@
 
-<h1 align="center"/>قالب سابسکریپشن اختصاصی  <a href="https://github.com/marzneshin/marzneshin">مرزنشین</a></h1>
-
 ## Desktop
 <img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/main/images/desktop.png" title="Marzneshin-Sub-Desktop"/>
 
