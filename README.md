@@ -21,33 +21,24 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/main/build/index.html
+sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/marzneshin/build/index.html
 ```
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
 ```sh
-echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
-echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /opt/marzban/.env
+echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"' | sudo tee -a /etc/opt/marzneshin/.env
+echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /etc/opt/marzneshin/.env
 ```
-یا مقادیر زیر رو در فایل `.env` در پوشه `/opt/marzban` با پاک کردن # اول آنها از حالت کامنت در بیارید.
+یا مقادیر زیر رو در فایل `.env` در پوشه `/etc/opt/marzneshin` با پاک کردن # اول آنها از حالت کامنت در بیارید.
 ```sh
-CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"
+CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"
 SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
 ```
 
-3. ری استارت مرزبان
+3. ری استارت مرزنشین
 ```sh
-marzban restart
+marzneshin restart
 ```
-
-
-# مراحل نصب در هاست:
-
-ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/index.php) رو از build/sub دانلود کنید.
-
-در پوشه public_html هاستتون یک فولد به اسم sub بسازید و فایل‌های مربوطه رو در اون قسمت آپلود کنید.
-
-پس از آپلود فایل [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/index.php) رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید (به همراه پورت).
 
 
 ## بروزرسانی
