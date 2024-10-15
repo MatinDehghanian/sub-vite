@@ -1,7 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Stack } from "react-bootstrap";
 
-const InfoRow = ({ icon, label, value, extraIcon, extraColor, extend }) => (
+const InfoRow = ({
+  icon,
+  label,
+  value,
+  extraIcon,
+  extraColor,
+  extend,
+  rtl,
+}) => (
   <Col xs="12" md={!extend ? "6" : ""} className={"item " + extend}>
     <Stack direction="horizontal" gap={3}>
       <div className="icon-holder">
@@ -9,10 +17,7 @@ const InfoRow = ({ icon, label, value, extraIcon, extraColor, extend }) => (
       </div>
       <div className="text-c">
         <div className="p-2 ms-auto">{label}</div>
-        <div
-          className="p-2 text-op"
-          style={{ direction: label === "تاریخ اتمام :" ? "rtl" : "ltr" }}
-        >
+        <div className="p-2 text-op" style={{ direction: rtl ? "rtl" : "ltr" }}>
           {value}
           {extraIcon && (
             <FontAwesomeIcon
