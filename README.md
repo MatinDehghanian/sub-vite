@@ -21,23 +21,23 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/marzneshin/build/index.html
+sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/marzban/build/index.html
 ```
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
 ```sh
-echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"' | sudo tee -a /etc/opt/marzneshin/.env
-echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /etc/opt/marzneshin/.env
+echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzneshin/.env
+echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /opt/marzneshin/.env
 ```
-یا مقادیر زیر رو در فایل `.env` در پوشه `/etc/opt/marzneshin` با پاک کردن # اول آنها از حالت کامنت در بیارید.
+یا مقادیر زیر رو در فایل `.env` در پوشه `/opt/marzban` با پاک کردن # اول آنها از حالت کامنت در بیارید.
 ```sh
-CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"
+CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"
 SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
 ```
 
 3. ری استارت مرزنشین
 ```sh
-marzneshin restart
+marzban restart
 ```
 
 
