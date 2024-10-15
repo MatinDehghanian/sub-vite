@@ -1,9 +1,9 @@
 
 ## Desktop
-<img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/main/images/desktop.png" title="Marzneshin-Sub-Desktop"/>
+<img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/assets/images/desktop.png" title="Marzneshin-Sub-Desktop"/>
 
 ## Responsive Mobile
-<img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/main/images/web-Mobile.JPEG" title="Marzneshin-Sub-Mobile"/>
+<img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/assets/images/web-Mobile.JPEG" title="Marzneshin-Sub-Mobile"/>
 
 # ساخته شده توسط
 - React 18
@@ -21,7 +21,7 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/main/build/index.html
+sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/assets/build/marzban/index.html
 ```
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
@@ -43,7 +43,7 @@ marzban restart
 
 # مراحل نصب در هاست:
 
-ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/index.php) رو از build/sub دانلود کنید.
+ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/assets/build/host/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/assets/build/host/sub/index.php) رو از build/sub دانلود کنید.
 
 در پوشه public_html هاستتون یک فولد به اسم sub بسازید و فایل‌های مربوطه رو در اون قسمت آپلود کنید.
 
