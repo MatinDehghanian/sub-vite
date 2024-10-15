@@ -9,7 +9,10 @@ const InfoRow = ({ icon, label, value, extraIcon, extraColor, extend }) => (
       </div>
       <div className="text-c">
         <div className="p-2 ms-auto">{label}</div>
-        <div className="p-2 text-op">
+        <div
+          className="p-2 text-op"
+          style={{ direction: label === "تاریخ اتمام :" ? "rtl" : "ltr" }}
+        >
           {value}
           {extraIcon && (
             <FontAwesomeIcon

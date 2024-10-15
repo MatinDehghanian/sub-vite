@@ -8,10 +8,19 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tab, Col, Nav } from "react-bootstrap";
 import AppList from "./AppsComponents/Applist"; // Import the generic AppList
-import AppsData from "./AppsComponents/apps.json";
 
 const Apps = () => {
   const [os, setOS] = useState("#Apple");
+
+  const [AppsData, setAppData] = useState([]);
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_JSON_APPS_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        setAppData(data);
+      });
+  }, []);
 
   useEffect(() => {
     const userAgent = navigator.userAgent.toLowerCase();

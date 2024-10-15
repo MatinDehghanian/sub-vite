@@ -28,7 +28,7 @@ $main-color-light: rgb(191, 55, 96);
       height: 120px;
       position: absolute;
       right: calc(50% - 60px);
-      top: calc(13% - 60px);
+      top: calc(4.5%);
       width: 120px;
     }
 
@@ -40,7 +40,7 @@ $main-color-light: rgb(191, 55, 96);
       height: 70px;
       position: absolute;
       right: calc(50% - 35px);
-      top: calc(13% - 35px);
+      top: calc(7%);
       width: 70px;
       z-index: 2;
       animation: blink 1.5s linear infinite;

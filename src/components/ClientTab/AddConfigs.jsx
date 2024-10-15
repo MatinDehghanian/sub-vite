@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react";
 import { Col, Row, Card, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AppsData from "../ClientTab/AppsComponents/apps.json";
 
 const AddConfigs = () => {
+  const [AppsData, setAppData] = useState([]);
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_JSON_APPS_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        setAppData(data);
+      });
+  }, []);
+
   const panelDomain =
     import.meta.env?.VITE_PANEL_DOMAIN || window.location.origin;
   const pathname = window.location.pathname.split("#")[0];

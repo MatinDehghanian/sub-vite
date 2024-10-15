@@ -80,13 +80,20 @@ export const formatDate = (dateString) => {
   const tehranOffset = 3.5 * 60 * 1000; // in milliseconds
   const tehranTime = new Date(date.getTime() + tehranOffset);
 
-  return tehranTime.toLocaleString("en-US", {
-    timeZone: "Asia/Tehran",
+  // Format the date and time separately
+  const formattedDate = tehranTime.toLocaleDateString("fa-IR", {
+    year: "numeric",
     month: "long",
     day: "numeric",
+  });
+
+  const formattedTime = tehranTime.toLocaleTimeString("fa-IR", {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  // Concatenate the date and time with a hyphen
+  return `${formattedDate} - ${formattedTime}`;
 };
 
 // Format expiration date
@@ -110,13 +117,13 @@ export const calculateRemainingTime = (expireTimestamp) => {
 
 // Format traffic data
 export const formatTraffic = (bytes) => {
-  const units = ["B", "MB", "GB", "TB"];
-  const thresholds = [1, 1024, 1024 ** 2, 1024 ** 3];
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let i = 0;
 
-  for (let i = 0; i < thresholds.length; i++) {
-    if (bytes < thresholds[i] * 1024) {
-      return `${(bytes / thresholds[i]).toFixed(2)} ${units[i]}`;
-    }
+  while (bytes >= 1024 && i < units.length - 1) {
+    bytes /= 1024;
+    i++;
   }
-  return `${(bytes / 1024 ** 4).toFixed(2)} TB`; // Fallback for TB
+
+  return `${bytes.toFixed(2)} ${units[i]}`;
 };
