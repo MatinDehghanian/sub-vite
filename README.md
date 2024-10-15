@@ -1,8 +1,56 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center"/>قالب سابسکریپشن اختصاصی  <a href="https://github.com/marzneshin/marzneshin">مرزنشین</a></h1>
 
-Currently, two official plugins are available:
+## Desktop
+<img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/main/images/desktop.png" title="Marzneshin-Sub-Desktop"/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Responsive Mobile
+<img src="https://raw.githubusercontent.com/MatinDehghanian/sub-vite/main/images/web-Mobile.JPEG" title="Marzneshin-Sub-Mobile"/>
+
+# ساخته شده توسط
+- React 18
+- Vite 5
+- React Bootstarp
+- FontAwesome Icons
+
+# ویژگی ها
+- افزودن سریع لینک اشتراک
+- لیست اپلیکیشن های قابل تغییر و توسعه
+- اطلاعات سرویس کامل و کاربردی
+- دریافت لیست کانفیگ ها و دریافت بارکد هر کانفیگ
+- شخصی سازی کامل برنامه ها
+
+# مراحل نصب
+1. دانلود فایل template
+```sh
+sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/marzneshin/build/main.html
+```
+
+2. دستورات زیر رو تو ترمینال سرورتون بزنید:
+```sh
+echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"' | sudo tee -a /etc/opt/marzneshin/.env
+echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/main.html"' | sudo tee -a /etc/opt/marzneshin/.env
+```
+یا مقادیر زیر رو در فایل `.env` در پوشه `/opt/marzneshin` با پاک کردن # اول آنها از حالت کامنت در بیارید.
+```sh
+CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"
+SUBSCRIPTION_PAGE_TEMPLATE="subscription/main.html"
+```
+
+3. ری استارت مرزنشین
+```sh
+marzneshin restart
+```
+
+
+## بروزرسانی
+برای بروزرسانی تمپلیت فقط کافیست مرحله 1 را تکرار کنید.
+
+# شخصی سازی
+ریپازیتوری 
+https://github.com/MatinDehghanian/public-assets/blob/main/json/apps.json
+رو باز کنید
+در صورت نیاز فورک کنید و میتونید اپلیکیشن هارو باتوجه به سیستم عامل اضافه کنید و ایکون های خودتون رو بدید بهش یا لینک برنامه هارو بروزرسانی کنید
+
+## حمایت و سفارش
+برای سفارش تمپلیت اختصاصی خودتون توی <a href="https://t.me/Mqtin">تلگرام</a> با من در ارتباط باشین.
