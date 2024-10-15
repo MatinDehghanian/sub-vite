@@ -41,13 +41,14 @@ marzban restart
 ```
 
 
-# مراحل نصب در هاست : 
+# مراحل نصب در هاست:
 
-ابتدا دو فایل .htaccess و index.php رو از build/sub دانلود کنید
+ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/index.php) رو از build/sub دانلود کنید.
 
-و در پوشه public_html هاستتون یک فولد به اسم sub بسازید و فایل های مربوطه رو در اون قسمت اپلود کنید. 
+در پوشه public_html هاستتون یک فولد به اسم sub بسازید و فایل‌های مربوطه رو در اون قسمت آپلود کنید.
 
-پس از آپلود فایل index.php رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید ( به همراه پورت ) 
+پس از آپلود فایل [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/index.php) رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید (به همراه پورت).
+
 
 ## بروزرسانی
 برای بروزرسانی تمپلیت فقط کافیست مرحله 1 را تکرار کنید.
