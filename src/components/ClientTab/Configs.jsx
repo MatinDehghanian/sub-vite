@@ -11,15 +11,28 @@ import {
   extractNameFromConfigURL,
   handleCopyToClipboard,
 } from "../../utils/Helper.js";
+import GetInfoRequest from "../../utils/GetInfoRequest.js";
 
-const Configs = ({ data }) => {
-  
+const Configs = () => {
+  const [dataLinks, setDataLinks] = useState({});
+
+  useEffect(() => {
+    GetInfoRequest.getConfigs().then((res) => {
+      var decodedLinks = decodeBase64(res.data.trim());
+      var configArray = decodedLinks ? decodedLinks.split("\n") : [];
+      setDataLinks(configArray);
+    });
+  }, []);
+
   const filteredLinks = useMemo(() => {
-    if (data?.links && data.links[data.links.length - 1] === "False") {
-      return data.links.slice(0, -1);
+    if (!Array.isArray(dataLinks)) {
+      return [];
     }
-    return data?.links || [];
-  }, [data?.links]);
+    if (dataLinks.length && dataLinks[dataLinks.length - 1] === "False") {
+      return dataLinks.slice(0, -1);
+    }
+    return dataLinks;
+  }, [dataLinks]);
 
   const [icons, setIcons] = useState([]);
   const [iconClasses, setIconClasses] = useState([]);
@@ -47,49 +60,50 @@ const Configs = ({ data }) => {
   return (
     <>
       <ListGroup className="nav-links">
-        {filteredLinks?.map((link, index) => {
-          const title = extractNameFromConfigURL(link);
-          return (
-            <ListGroup.Item
-              key={index}
-              value={filteredLinks?.[index]}
-              onClick={() =>
-                handleCopyToClipboard(
-                  filteredLinks?.[index],
-                  index,
-                  setIcons,
-                  setIconClasses
-                )
-              }
-            >
-              <div className="title-a">{title}</div>
-              <div className="config-icons">
-                <FontAwesomeIcon
-                  size="sm"
-                  icon={icons[index] || faClipboard}
-                  className={iconClasses[index]}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopyToClipboard(
-                      filteredLinks?.[index],
-                      index,
-                      setIcons,
-                      setIconClasses
-                    );
-                  }}
-                />
-                <FontAwesomeIcon
-                  size="sm"
-                  icon={faQrcode}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleShow(title, filteredLinks?.[index], index);
-                  }}
-                />
-              </div>
-            </ListGroup.Item>
-          );
-        })}
+        {filteredLinks &&
+          filteredLinks?.map((link, index) => {
+            const title = extractNameFromConfigURL(link);
+            return (
+              <ListGroup.Item
+                key={index}
+                value={filteredLinks?.[index]}
+                onClick={() =>
+                  handleCopyToClipboard(
+                    filteredLinks?.[index],
+                    index,
+                    setIcons,
+                    setIconClasses
+                  )
+                }
+              >
+                <div className="title-a">{title}</div>
+                <div className="config-icons">
+                  <FontAwesomeIcon
+                    size="sm"
+                    icon={icons[index] || faClipboard}
+                    className={iconClasses[index]}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopyToClipboard(
+                        filteredLinks?.[index],
+                        index,
+                        setIcons,
+                        setIconClasses
+                      );
+                    }}
+                  />
+                  <FontAwesomeIcon
+                    size="sm"
+                    icon={faQrcode}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleShow(title, filteredLinks?.[index], index);
+                    }}
+                  />
+                </div>
+              </ListGroup.Item>
+            );
+          })}
         <Button
           onClick={() =>
             handleCopyToClipboard(
@@ -129,3 +143,13 @@ const Configs = ({ data }) => {
 };
 
 export default Configs;
+
+function decodeBase64(encodedString) {
+  try {
+    const decodedString = atob(encodedString);
+    return decodedString;
+  } catch (error) {
+    console.error("Failed to decode base64:", error);
+    return "";
+  }
+}

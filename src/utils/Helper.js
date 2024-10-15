@@ -89,12 +89,29 @@ export const formatDate = (dateString) => {
   });
 };
 
-// Format expiration date
-export const formatExpireDate = (timestamp) =>
-  formatDate(new Date(timestamp * 1000).toISOString());
+export const formatExpireDate = (isoString) => {
+  const date = new Date(isoString);
 
-// Calculate remaining time
-export const calculateRemainingTime = (expireTimestamp) => {
+  // Format the date and time separately
+  const formattedDate = date.toLocaleDateString("fa-IR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const formattedTime = date.toLocaleTimeString("fa-IR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  // Concatenate the date and time with a hyphen
+  return `${formattedDate} - ${formattedTime}`;
+};
+
+// Calculate remaining time based on the new API "expire_date" format
+export const calculateRemainingTime = (expireDate) => {
+  // Convert the ISO string into a Unix timestamp (seconds)
+  const expireTimestamp = Math.floor(new Date(expireDate).getTime() / 1000);
   const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
 
   if (remainingSeconds <= 0) return "تمام شده";
@@ -110,13 +127,13 @@ export const calculateRemainingTime = (expireTimestamp) => {
 
 // Format traffic data
 export const formatTraffic = (bytes) => {
-  const units = ["B", "MB", "GB", "TB"];
-  const thresholds = [1, 1024, 1024 ** 2, 1024 ** 3];
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let i = 0;
 
-  for (let i = 0; i < thresholds.length; i++) {
-    if (bytes < thresholds[i] * 1024) {
-      return `${(bytes / thresholds[i]).toFixed(2)} ${units[i]}`;
-    }
+  while (bytes >= 1024 && i < units.length - 1) {
+    bytes /= 1024;
+    i++;
   }
-  return `${(bytes / 1024 ** 4).toFixed(2)} TB`; // Fallback for TB
+
+  return `${bytes.toFixed(2)} ${units[i]}`;
 };

@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Container, Row, Stack } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import {
   formatDate,
   formatExpireDate,
@@ -30,16 +30,24 @@ const ServiceInfo = ({ data }) => {
     totalTraffic: "",
     remainingTraffic: "",
   });
-
+  // Define status mapping based on the new API
   const statusMapping = {
-    on_hold: { color: "yellow", detail: "متوقف شده" },
     expired: { color: "orange", detail: "منقضی شده" },
-    limited: { color: "brown", detail: "محدود شده" },
+    data_limit_reached: { color: "brown", detail: "حجم تمام شده" },
+    inactive: { color: "red", detail: "غیرفعال" },
     active: { color: "green", detail: "فعال" },
-    default: { color: "red", detail: "غیرفعال" },
+    limited: { color: "yellow", detail: "محدود شده" },
+    default: { color: "gray", detail: "نامشخص" },
   };
 
-  const currentStatus = statusMapping[data?.status] || statusMapping.default;
+  // Determine status based on new API fields
+  const currentStatus = data?.expired
+    ? statusMapping.expired
+    : data?.data_limit_reached
+    ? statusMapping.data_limit_reached
+    : data?.is_active
+    ? statusMapping.active
+    : statusMapping.inactive; // Fallback to inactive or default
 
   const statusColor = currentStatus.color;
   const statusDetail = currentStatus.detail;
@@ -49,7 +57,7 @@ const ServiceInfo = ({ data }) => {
       const {
         online_at: onlineAt,
         created_at: createdAt,
-        expire,
+        expire_date,
         used_traffic: usedTraffic,
         data_limit: dataLimit,
       } = data;
@@ -57,9 +65,11 @@ const ServiceInfo = ({ data }) => {
       setServiceInfo({
         formattedDate: onlineAt ? formatDate(onlineAt) : "نامشخص",
         createdDate: createdAt ? formatDate(createdAt) : "نامشخص",
-        formattedExpireDate: expire ? formatExpireDate(expire) : "نامحدود",
-        remainingTime: expire ? (
-          calculateRemainingTime(expire)
+        formattedExpireDate: expire_date
+          ? formatExpireDate(expire_date)
+          : "نامحدود",
+        remainingTime: expire_date ? (
+          calculateRemainingTime(expire_date)
         ) : (
           <FontAwesomeIcon size="lg" icon={faInfinity} />
         ),
@@ -138,7 +148,13 @@ const ServiceInfo = ({ data }) => {
         <InfoCard title={"مدت باقی مانده از اعتبار"} value={remainingTime} />
         <InfoCard
           title={"تعداد کاربر"}
-          value={<FontAwesomeIcon size="lg" icon={faInfinity} />}
+          value={
+            !data?.note ? (
+              <FontAwesomeIcon size="lg" icon={faInfinity} />
+            ) : (
+              `${data?.note} کاربره`
+            )
+          }
         />
         <InfoCard title={"حجم مصرف شده"} value={formattedTraffic} ltr />
         <InfoCard title={"حجم باقی مانده"} value={remainingTraffic} ltr />
