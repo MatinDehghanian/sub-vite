@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Row, Card, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const AddConfigs = () => {
+const AddConfigs = ({ data }) => {
   const [AppsData, setAppData] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const AddConfigs = () => {
 
   const panelDomain =
     import.meta.env?.VITE_PANEL_DOMAIN || window.location.origin;
-  const pathname = window.location.pathname.split("#")[0];
+  const pathname = data?.subscription_url;
   const url = `${panelDomain}${pathname}`;
 
   const openShadowrocketURL = () => {

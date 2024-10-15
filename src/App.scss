@@ -28,7 +28,7 @@ $main-color-light: rgb(191, 55, 96);
       height: 120px;
       position: absolute;
       right: calc(50% - 60px);
-      top: calc(4.5%);
+      top: calc(11.5% - 60px);
       width: 120px;
     }
 
@@ -40,7 +40,7 @@ $main-color-light: rgb(191, 55, 96);
       height: 70px;
       position: absolute;
       right: calc(50% - 35px);
-      top: calc(7%);
+      top: calc(11.5% - 35px);
       width: 70px;
       z-index: 2;
       animation: blink 1.5s linear infinite;
@@ -86,7 +86,7 @@ $main-color-light: rgb(191, 55, 96);
   font-style: bold;
   font-weight: 700;
   line-height: normal;
-  font-size: calc(0.55rem + 5.5vw);
+  font-size: calc(0.55rem + 4vw);
 
   h1 {
     font-size: inherit;
