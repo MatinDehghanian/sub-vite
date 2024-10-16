@@ -200,19 +200,9 @@ const ServiceInfo = ({ data }) => {
         <Modal.Body className="text-center mb-3">
           <QRCode
             className="img-fluid"
-            value={
-              data?.subscription_url
-                ? data?.subscription_url
-                : window.location.href
-            }
+            value={data?.subscription_url}
             cursor={"pointer"}
-            onClick={() =>
-              handleCopyToClipboard(
-                data?.subscription_url
-                  ? data?.subscription_url
-                  : window.location.href
-              )
-            }
+            onClick={() => handleCopyToClipboard(data?.subscription_url)}
           />
         </Modal.Body>
       </Modal>

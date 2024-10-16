@@ -13,10 +13,7 @@ const AddConfigs = ({ data }) => {
       });
   }, []);
 
-  const panelDomain =
-    import.meta.env?.VITE_PANEL_DOMAIN || window.location.origin;
-  const pathname = data?.subscription_url;
-  const url = `${panelDomain}${pathname}`;
+  const url = data?.subscription_url;
 
   const openShadowrocketURL = () => {
     const encodedURL = btoa(url);
