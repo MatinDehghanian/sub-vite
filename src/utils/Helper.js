@@ -79,14 +79,20 @@ export const formatDate = (dateString) => {
   const date = new Date(dateString);
   const tehranOffset = 3.5 * 60 * 1000; // in milliseconds
   const tehranTime = new Date(date.getTime() + tehranOffset);
-
-  return tehranTime.toLocaleString("en-US", {
-    timeZone: "Asia/Tehran",
+  // Format the date and time separately
+  const formattedDate = tehranTime.toLocaleDateString("fa-IR", {
+    year: "numeric",
     month: "long",
     day: "numeric",
+  });
+
+  const formattedTime = tehranTime.toLocaleTimeString("fa-IR", {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  // Concatenate the date and time with a hyphen
+  return `${formattedDate} - ${formattedTime}`;
 };
 
 export const formatExpireDate = (isoString) => {

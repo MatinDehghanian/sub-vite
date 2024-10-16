@@ -34,16 +34,24 @@ const ServiceInfo = ({ data }) => {
     totalTraffic: "",
     remainingTraffic: "",
   });
-
+  // Define status mapping based on the new API
   const statusMapping = {
-    on_hold: { color: "yellow", detail: "در انتظار اتصال" },
     expired: { color: "orange", detail: "منقضی شده" },
-    limited: { color: "brown", detail: "محدود شده" },
+    data_limit_reached: { color: "brown", detail: "حجم تمام شده" },
+    inactive: { color: "red", detail: "غیرفعال" },
     active: { color: "green", detail: "فعال" },
-    default: { color: "red", detail: "غیرفعال" },
+    limited: { color: "yellow", detail: "محدود شده" },
+    default: { color: "gray", detail: "نامشخص" },
   };
 
-  const currentStatus = statusMapping[data?.status] || statusMapping.default;
+  // Determine status based on new API fields
+  const currentStatus = data?.expired
+    ? statusMapping.expired
+    : data?.data_limit_reached
+    ? statusMapping.data_limit_reached
+    : data?.is_active
+    ? statusMapping.active
+    : statusMapping.inactive; // Fallback to inactive or default
 
   const statusColor = currentStatus.color;
   const statusDetail = currentStatus.detail;
@@ -53,7 +61,7 @@ const ServiceInfo = ({ data }) => {
       const {
         online_at: onlineAt,
         created_at: createdAt,
-        expire,
+        expire_date: expire,
         used_traffic: usedTraffic,
         data_limit: dataLimit,
       } = data;
