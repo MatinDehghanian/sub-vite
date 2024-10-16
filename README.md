@@ -42,11 +42,11 @@ marzban restart
 
 # مراحل نصب در هاست:
 
-ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/assets/build/host/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/assets/build/host/sub/index.php) رو از build/sub دانلود کنید.
+ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/assets/devBuild/host/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/assets/devBuild/host/sub/index.php) رو از build/sub دانلود کنید.
 
 در پوشه public_html هاستتون یک فولد به اسم sub بسازید و فایل‌های مربوطه رو در اون قسمت آپلود کنید.
 
-پس از آپلود فایل [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/build/sub/index.php) رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید (به همراه پورت).
+پس از آپلود فایل [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/devBuild/sub/index.php) رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید (به همراه پورت).
 
 
 ## بروزرسانی
