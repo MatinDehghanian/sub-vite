@@ -21,7 +21,7 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/marzneshin/build/index.html
+sudo wget -N -P /var/lib/marzneshin/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/marzneshin/devBuild/index.html
 ```
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
