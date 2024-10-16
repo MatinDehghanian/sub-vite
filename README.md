@@ -21,8 +21,7 @@
 # مراحل نصب
 1. دانلود فایل template
 ```sh
-sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/MatinDehghanian/sub-vite/refs/heads/assets/build/marzban/index.html
-```
+sudo wget -N -P /var/lib/marzban/templates/subscription/  https://github.com/MatinDehghanian/sub-vite/releases/download/v.1.0/marzban-index.html
 
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
 ```sh
