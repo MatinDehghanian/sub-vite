@@ -42,11 +42,13 @@ marzban restart
 
 # مراحل نصب در هاست:
 
-ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/assets/devBuild/host/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/blob/assets/devBuild/host/sub/index.php) رو از build/sub دانلود کنید.
+ابتدا دو فایل [.htaccess](https://github.com/MatinDehghanian/sub-vite/blob/assets/devBuild/host/sub/.htaccess) و [index.php](https://github.com/MatinDehghanian/sub-vite/releases/download/v.1.0/marzban-index.php
+) رو از build/sub دانلود کنید.
 
 در پوشه public_html هاستتون یک فولد به اسم sub بسازید و فایل‌های مربوطه رو در اون قسمت آپلود کنید.
 
-پس از آپلود فایل [index.php](https://github.com/MatinDehghanian/sub-vite/blob/main/devBuild/sub/index.php) رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید (به همراه پورت).
+پس از آپلود فایل [index.php](https://github.com/MatinDehghanian/sub-vite/releases/download/v.1.0/marzban-index.php
+) رو ویرایش کنید و آدرس پنل خودتون رو داخلش قرار بدید (به همراه پورت).
 
 
 ## بروزرسانی
@@ -57,6 +59,18 @@ marzban restart
 https://github.com/MatinDehghanian/public-assets/blob/main/json/apps.json
 رو باز کنید
 در صورت نیاز فورک کنید و میتونید اپلیکیشن هارو باتوجه به سیستم عامل اضافه کنید و ایکون های خودتون رو بدید بهش یا لینک برنامه هارو بروزرسانی کنید
+آموزش ویدیویی :
+
+
+[![Youtube Tutorial Video](https://img.youtube.com/vi/l5Pvy6Hof9o/0.jpg)](https://www.youtube.com/watch?v=l5Pvy6Hof9o)
+
+
+
+
 
 ## حمایت و سفارش
 برای سفارش تمپلیت اختصاصی خودتون توی <a href="https://t.me/Mqtin">تلگرام</a> با من در ارتباط باشین.
+
+<a href="https://nowpayments.io/donation?api_key=Z50AKDD-DHSMN86-P0DQ22X-1SQAFCA" target="_blank" rel="noreferrer noopener">
+    <img src="https://nowpayments.io/images/embeds/donation-button-black.svg" alt="Crypto donation button by NOWPayments">
+</a>
