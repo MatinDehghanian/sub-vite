@@ -131,7 +131,7 @@ const Configs = ({ data }) => {
               icon={faQrcode}
               onClick={(e) => {
                 e.stopPropagation();
-                handleShow("لینک ساب", user?.subscription_url, -2);
+                handleShow("لینک ساب", SubUrl, -2);
               }}
             />
           </div>
