@@ -44,6 +44,10 @@ const Configs = ({ data }) => {
     setIndex(index);
   };
 
+  const SubUrl = data?.subscription_url.includes("https://")
+    ? data?.subscription_url
+    : `${window.location.origin}${data?.subscription_url}`;
+
   return (
     <>
       <ListGroup className="nav-links">
@@ -90,6 +94,34 @@ const Configs = ({ data }) => {
             </ListGroup.Item>
           );
         })}
+        <ListGroup.Item
+          key={-1}
+          value={SubUrl}
+          onClick={() =>
+            handleCopyToClipboard(SubUrl, -2, setIcons, setIconClasses)
+          }
+        >
+          <div className="title-a">{"لینک ساب"}</div>
+          <div className="config-icons">
+            <FontAwesomeIcon
+              size="sm"
+              icon={icons[-2] || faClipboard}
+              className={iconClasses[-2]}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCopyToClipboard(SubUrl, -2, setIcons, setIconClasses);
+              }}
+            />
+            <FontAwesomeIcon
+              size="sm"
+              icon={faQrcode}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleShow("لینک ساب", SubUrl, -2);
+              }}
+            />
+          </div>
+        </ListGroup.Item>
         <Button
           onClick={() =>
             handleCopyToClipboard(

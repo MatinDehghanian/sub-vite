@@ -13,7 +13,9 @@ const AddConfigs = ({ data }) => {
       });
   }, []);
 
-  const url = data?.subscription_url;
+  const url = data?.subscription_url.includes("https://")
+    ? data?.subscription_url
+    : `${window.location.origin}${data?.subscription_url}`;
 
   const openShadowrocketURL = () => {
     const encodedURL = btoa(url);
