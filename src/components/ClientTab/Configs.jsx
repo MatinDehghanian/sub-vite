@@ -13,8 +13,12 @@ import {
 } from "../../utils/Helper.js";
 import GetInfoRequest from "../../utils/GetInfoRequest.js";
 
-const Configs = () => {
+const Configs = ({ data }) => {
   const [dataLinks, setDataLinks] = useState({});
+
+  const SubUrl = data?.subscription_url.includes("https://")
+    ? data?.subscription_url
+    : `${window.location.origin}${data?.subscription_url}`;
 
   useEffect(() => {
     GetInfoRequest.getConfigs().then((res) => {
@@ -104,6 +108,34 @@ const Configs = () => {
               </ListGroup.Item>
             );
           })}
+        <ListGroup.Item
+          key={-1}
+          value={SubUrl}
+          onClick={() =>
+            handleCopyToClipboard(SubUrl, -2, setIcons, setIconClasses)
+          }
+        >
+          <div className="title-a">{"لینک ساب"}</div>
+          <div className="config-icons">
+            <FontAwesomeIcon
+              size="sm"
+              icon={icons[-2] || faClipboard}
+              className={iconClasses[-2]}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCopyToClipboard(SubUrl, -2, setIcons, setIconClasses);
+              }}
+            />
+            <FontAwesomeIcon
+              size="sm"
+              icon={faQrcode}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleShow("لینک ساب", user?.subscription_url, -2);
+              }}
+            />
+          </div>
+        </ListGroup.Item>
         <Button
           onClick={() =>
             handleCopyToClipboard(

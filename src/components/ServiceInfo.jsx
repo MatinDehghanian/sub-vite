@@ -56,6 +56,10 @@ const ServiceInfo = ({ data }) => {
   const statusColor = currentStatus.color;
   const statusDetail = currentStatus.detail;
 
+  const SubUrl = data?.subscription_url.includes("https://")
+    ? data?.subscription_url
+    : `${window.location.origin}${data?.subscription_url}`;
+
   useEffect(() => {
     if (data) {
       const {
@@ -208,19 +212,9 @@ const ServiceInfo = ({ data }) => {
         <Modal.Body className="text-center mb-3">
           <QRCode
             className="img-fluid"
-            value={
-              data?.subscription_url
-                ? data?.subscription_url
-                : window.location.href
-            }
+            value={SubUrl}
             cursor={"pointer"}
-            onClick={() =>
-              handleCopyToClipboard(
-                data?.subscription_url
-                  ? data?.subscription_url
-                  : window.location.href
-              )
-            }
+            onClick={() => handleCopyToClipboard(SubUrl)}
           />
         </Modal.Body>
       </Modal>

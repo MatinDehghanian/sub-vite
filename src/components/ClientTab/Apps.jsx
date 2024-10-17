@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tab, Col, Nav } from "react-bootstrap";
-import AppList from "./AppsComponents/Applist"; // Import the generic AppList
+import AppList from "./AppsComponents/Applist"; 
 
 const Apps = () => {
   const [os, setOS] = useState("#Apple");
